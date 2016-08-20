@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>resize-aware demo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+  <link rel="import" href="../resize-aware.html">
+
+  <style is="custom-style" include="demo-pages-shared-styles">
+
+  </style>
+</head>
+
+<body>
+
+  <div class="vertical-section-container centered">
+    <h3>Basic resize-aware Demo</h3>
+    <demo-snippet>
+      <template>
+        <resize-aware on-size-changed="window.handleSC()">
+          <div id="tester" style="background-color: azure;">
+            <p>
+              Lorem ipsum.
+            </p>
+          </div>
+        </resize-aware>
+        <ul id="chglist">
+
+        </ul>
+      </template>
+    </demo-snippet>
+  </div>
+  <script>
+
+    window.addEventListener('WebComponentsReady', function(e) {
+      document.querySelector('resize-aware').addEventListener('element-resize', function(e) {
+        var li = document.createElement('li');
+        li.innerHTML = 'Changed to ' + e.detail.width + ' x ' +  e.detail.height;
+        document.querySelector('#chglist').appendChild(li);
+      });
+    });
+    setTimeout(function() {
+      var t = document.querySelector('#tester');
+      t.innerHTML =
+        '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget eleifend nunc. Sed nec efficitur leo. Aliquam venenatis eu dui nec molestie. Donec quis bibendum lectus. Vestibulum massa lorem, interdum eu rutrum et, aliquet cursus neque. Donec convallis purus eget egestas posuere. Pellentesque viverra sapien sit amet nisl mollis sodales. Vestibulum tempus tellus quis nibh blandit, quis sodales lectus tincidunt. Nam mollis, eros quis consequat euismod, ex risus feugiat dolor, a dictum libero risus eget enim. Aenean tincidunt ac neque non scelerisque. In consequat, ex sit amet blandit auctor, dui sapien sollicitudin justo, vitae feugiat tortor metus at dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas porta mauris non nulla suscipit ultricies. Pellentesque a ornare ante, vestibulum tristique dolor.</p>';
+    }, 5000);
+    setTimeout(function() {
+      var t = document.querySelector('#tester');
+      t.innerHTML = '<p>You can also try resizing the window.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget eleifend nunc.</p>';
+    }, 10000);
+  </script>
+
+</body>
+
+</html>
