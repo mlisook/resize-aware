@@ -15,7 +15,6 @@ This custom control uses code from [procurios/ResizeSensor](https://github.com/p
 ## Releases
 
 1.9.0 is a Polymer 2.0 hybrid element suitable for Polymer ^1.9.0 and ^2.0.0 
-2.0.0 is a Polymer 2.0 native ES6 element suitable for Polymer ^2.0.0
 
 ## Install
 
@@ -66,3 +65,7 @@ this.$$('resize-aware').addEventListener('element-resize', this.someHandlerName)
  ```javascript
  this.$$('resize-aware').addEventListener('element-resize', this.someHandlerName);
  ```
+
+## License
+
+MIT license
