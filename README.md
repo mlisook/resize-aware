@@ -4,39 +4,54 @@ Container element that is aware of, and notifies of, changes to its size.
 
 ## Why
 
-Sometimes your component needs to be aware of changes to the size of its light dom in the <content></content> tags. You may just need to know an element's size as part of a responsive design.
+Sometimes you may need to take some action when the rendered size of an element changes. This element provides the 
+something like the window resize event but for an individual element.
 
-Shadow DOM encapsulation prevents Mutation Observers from detecting and reporting changes in the light DOM to the shadow DOM, so that technique works only with shady DOM.
+There are many reasons an element's size could change - CSS or class changes, content changes, content of other elements affecting
+the flow, viewport changes, etc.  This element detects the size changes without polling or loops.
 
-This custom control uses [procurios/ResizeSensor](https://github.com/procurios/ResizeSensor) modified to work with Polymer in both Shadow and Shady DOM.
+This custom control uses code from [procurios/ResizeSensor](https://github.com/procurios/ResizeSensor) modified to work with Polymer in both Shadow and Shady DOM.
+
+## Releases
+
+1.9.0 is a Polymer 2.0 hybrid element suitable for Polymer ^1.9.0 and ^2.0.0 
+2.0.0 is a Polymer 2.0 native ES6 element suitable for Polymer ^2.0.0
 
 ## Install
 
 Use Bower to install:
 
+For Polymer 2.0 native
 ```
 bower install --save resize-aware
 ```
+For Polymer 1.x or 2.0 hybrid
+```
+bower install --save resize-aware#^1.9.0
+```
 
-## Include in Your Custom Component
+
+## How to Use
 ```html
 <link rel="import" href="../../bower_components/resize-aware.html" />
 ```
 
 ```html
 <resize-aware on-element-size-changed="handleChange">
-  <div>
     <p>
-      Lorem ipsum.
+      [[theReview]]
     </p>
-  </div>
+    <img src="[[thePic]]">
 </resize-aware>
  ```
  or
  ```html
-<resize-aware on-element-size-changed="handleChange">
-  <content></content>
+<resize-aware>
+  any content that could have been in a div
 </resize-aware>
+```
+```javascript
+this.$$('resize-aware').addEventListener('element-resize', this.someHandlerName);
 ```
 
  ## Change Notification
