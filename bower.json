@@ -2,6 +2,7 @@
   "name": "resize-aware",
   "description": "Container element that is aware of and notifies of changes to its size",
   "main": "resize-aware.html",
+  "version": "2.0.0",
   "keywords": [
     "polymer",
     "container",
@@ -13,7 +14,7 @@
     "web-components"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^2.0.0"
+    "polymer": "Polymer/polymer#^2.0.2"
   },
   "demo": "demo/index.html",
   "license": "MIT",
