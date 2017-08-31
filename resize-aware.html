@@ -1,34 +1,6 @@
-<!--
-`resize-aware`
-
-Container element that is aware of, and notifies of, changes to its size
-
-Use `resize-aware` in place of a `div` when you need to take some action
-if the rendered dimensions of the element change (content change affecting the
-size, layout changes, viewport change). `resize-aware` will fire an event when
-its dimensions change that includes the new size.
-
-Example:
-
- ```
-<resize-aware on-element-size-changed="handleChange">
-  any content that could have been in a div
-</resize-aware>
-``` 
-
- ```
-<resize-aware>
-  any content that could have been in a div
-</resize-aware>
-
-this.$$('resize-aware').addEventListener('element-resize', this.someHandlerName);
-``` 
-
-@demo demo/index.html
--->
+<link rel="import" href="../polymer/polymer-element.html">
 
 <dom-module id="resize-aware">
-
 	<template>
 		<style>
 			:host {
@@ -46,9 +18,6 @@ this.$$('resize-aware').addEventListener('element-resize', this.someHandlerName)
 				border: none;
 				position: relative;
 			}
-			/* Resize Sensor Styles 
-         Browsers supported by Polymer no longer require prefixes
-      */
 			
 			@keyframes resizeanim {
 				from {
@@ -101,49 +70,83 @@ this.$$('resize-aware').addEventListener('element-resize', this.someHandlerName)
 	</template>
 
 	<script>
-		Polymer({
+        /**
+        * `resize-aware`
+        *
+        * Container element that is aware of, and notifies of, changes to its size
+        *
+        * Use `resize-aware` in place of a `div` when you need to take some action
+        * if the rendered dimensions of the element change (content change affecting the
+        * size, layout changes, viewport change). `resize-aware` will fire an event when
+        * its dimensions change that includes the new size.
+        * 
+        * Example:
+        * 
+        * ```
+        * <resize-aware on-element-size-changed="handleChange">
+        *  any content that could have been in a div
+        * </resize-aware>
+        * ``` 
+        * 
+        * ```
+        * <resize-aware>
+        *  any content that could have been in a div
+        * </resize-aware>
+        * 
+        * this.$$('resize-aware').addEventListener('element-resize', this.someHandlerName);
+        * ``` 
+        * 
+        * @demo demo/index.html
+        **/
+        class ResizeAware extends Polymer.Element {
+            static get is() {
+                return 'resize-aware';
+            }
 
-			is: 'resize-aware',
-			properties: {
-				/**
-				 * Current element size in px. { height: width: }
-				 * @type {Object}
-				 */
-				elementSize: {
-					type: Object,
-					notify: true,
-					readOnly: true,
-					value: function () {
-						return {
-							width: 0,
-							height: 0
-						};
-					}
-				},
-				_rsApi: {
-					type: Object
-				}
-			},
-			/**
+            static get properties() {
+                return {
+                    /**
+                     * Current element size in px. { height: width: }
+                     * @type {Object}
+                     */
+                    elementSize: {
+                        type: Object,
+                        notify: true,
+                        readOnly: true,
+                        value: function () {
+                            return {
+                                width: 0,
+                                height: 0
+                            };
+                        }
+                    },
+                    _rsApi: {
+                        type: Object
+                    }
+                }
+            }
+            /**
 			 * Initialize listening for size changes
 			 */
-			ready: function () {
+			ready() {
+                super.ready();
 				this._rsApi = this._resizeSensorApi(this._resizeSensor(this));
-				this._rsApi.create(this.$.saw, [this.$.rsrt, this.$.rsexpt, this.$.rsexptc, this.$.rscntrt], this._handleResize.bind(
-					this));
-			},
+				this._rsApi.create(this.$.saw, [this.$.rsrt, this.$.rsexpt, this.$.rsexptc, this.$.rscntrt], this._handleResize.bind(this));
+            }
+            
 			/**
 			 * Handle resize events
 			 * @param  {[type]} e [description]
 			 * @return {[type]}   [description]
 			 */
-			_handleResize: function (e) {
-				this.fire('element-resize', e);
+			_handleResize(e) {
+				this.dispatchEvent(new CustomEvent('element-resize', { detail: e }));
 				this._setElementSize({
 					width: e.width,
 					height: e.height
 				});
-			},
+            }
+            
 			/**
 			 * The API for resize sensor
 			 *
@@ -153,7 +156,7 @@ this.$$('resize-aware').addEventListener('element-resize', this.someHandlerName)
 			 * @param  ResizeSensor ResizeSensor
 			 * @return ResizeSensorApi              public API of ResizeSensor
 			 */
-			_resizeSensorApi: function (ResizeSensor) {
+			_resizeSensorApi(ResizeSensor) {
 				'use strict';
 
 				/** {{}} Map of all resize sensors (id => ResizeSensor) */
@@ -207,7 +210,7 @@ this.$$('resize-aware').addEventListener('element-resize', this.someHandlerName)
 				};
 
 				return new ResizeSensorApi();
-			},
+			}
 
 			/**
 			 * Resize sensor core function
@@ -219,11 +222,8 @@ this.$$('resize-aware').addEventListener('element-resize', this.someHandlerName)
 			 * @param  HTMLElement rootNode the shadow root of this component
 			 * @return ResizeSensor          core function class
 			 */
-			_resizeSensor: function (rootNode) {
-				'use strict';
-
+			_resizeSensor(rootNode) {
 				/** ----- Feature tests and polyfills ----- */
-
 				/** {array} */
 				var unsuitableElements = ['IMG', 'COL', 'TR', 'THEAD', 'TFOOT'];
 				/** {boolean} */
@@ -544,7 +544,7 @@ this.$$('resize-aware').addEventListener('element-resize', this.someHandlerName)
 
 				return ResizeSensor;
 			}
-
-		});
+        }
+        window.customElements.define(ResizeAware.is, ResizeAware);
 	</script>
 </dom-module>
