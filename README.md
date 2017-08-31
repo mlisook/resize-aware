@@ -12,35 +12,21 @@ the flow, viewport changes, etc.  This element detects the size changes without 
 
 This custom control uses code from [procurios/ResizeSensor](https://github.com/procurios/ResizeSensor) modified to work with Polymer in both Shadow and Shady DOM.
 
-## Releases
-
-1.9.0 is a Polymer 2.0 hybrid element suitable for Polymer ^1.9.0 and ^2.0.0 
-
-## Install
-
-Use Bower to install:
-
-For Polymer 2.0 native
-```
-bower install --save resize-aware
-```
-For Polymer 1.x or 2.0 hybrid
-```
-bower install --save resize-aware#^1.9.0
-```
-
 ## demo
 <!--
 ```
 <custom-element-demo>
   <template>
      <div style="display: -webkit-flex; display: flex; max-width: 500px; min-height: 80px;">
+        
+        <next-code-block></next-code-block>
+        
         <script>
             window.addEventListener('WebComponentsReady', function (e) {
                 document.querySelector('resize-aware').addEventListener('element-resize', function (e) {
-                var li = document.createElement('li');
-                li.innerHTML = 'Changed to ' + e.detail.width + ' x ' + e.detail.height;
-                document.querySelector('#chglist').appendChild(li);
+                    var li = document.createElement('li');
+                    li.innerHTML = 'Changed to ' + e.detail.width + ' x ' + e.detail.height;
+                    document.querySelector('#chglist').appendChild(li);
                 });
             });
 
@@ -65,7 +51,6 @@ bower install --save resize-aware#^1.9.0
                     '<p>This azure area is resize-aware.</p><p>It fires an event when its size changes. For example, if the content size changes.</p><p>Or, of course, if the viewport changes. (try resizing the window).</p><p>The control is event driven, no polling loops.</p>';
             }, 19000);
             </script>
-            <next-code-block></next-code-block>
         </div>
     </template>
 </custom-element-demo>
