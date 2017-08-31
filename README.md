@@ -12,6 +12,15 @@ the flow, viewport changes, etc.  This element detects the size changes without 
 
 This custom control uses code from [procurios/ResizeSensor](https://github.com/procurios/ResizeSensor) modified to work with Polymer in both Shadow and Shady DOM.
 
+## Install
+For Polymer 2.0 projects, install the 2.0 native, class based version:
+
+`bower install --save resize-aware`
+
+For Polymer 1.x projects, install the hybrid version:
+
+`bower install --save resize-aware#^1.9.1`
+
 ## How to Use
 ```html
 <link rel="import" href="../../bower_components/resize-aware.html" />
