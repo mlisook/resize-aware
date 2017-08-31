@@ -29,6 +29,60 @@ For Polymer 1.x or 2.0 hybrid
 bower install --save resize-aware#^1.9.0
 ```
 
+## demo
+<!--
+```
+<custom-element-demo>
+  <template>
+     <div style="display: -webkit-flex; display: flex; max-width: 500px; min-height: 80px;">
+        <script>
+            window.addEventListener('WebComponentsReady', function (e) {
+                document.querySelector('resize-aware').addEventListener('element-resize', function (e) {
+                var li = document.createElement('li');
+                li.innerHTML = 'Changed to ' + e.detail.width + ' x ' + e.detail.height;
+                document.querySelector('#chglist').appendChild(li);
+                });
+            });
+
+            setTimeout(function () {
+                var t = document.querySelector('#tester');
+                t.innerHTML =
+                '<p>This azure area is resize-aware.</p><p>It fires an event when its size changes. For example, if the content size changes.</p>';
+            }, 5000);
+            setTimeout(function () {
+                var t = document.querySelector('#col2info');
+                t.innerHTML =
+                '<p>... Or if other elements in the layout change the available space.</p>';
+            }, 10000);
+            setTimeout(function () {
+                var t = document.querySelector('#tester');
+                t.innerHTML =
+                    '<p>This azure area is resize-aware.</p><p>It fires an event when its size changes. For example, if the content size changes.</p><p>Or, of course, if the viewport changes. (try resizing the window).</p>';
+            }, 15000);
+            setTimeout(function () {
+                var t = document.querySelector('#tester');
+                t.innerHTML =
+                    '<p>This azure area is resize-aware.</p><p>It fires an event when its size changes. For example, if the content size changes.</p><p>Or, of course, if the viewport changes. (try resizing the window).</p><p>The control is event driven, no polling loops.</p>';
+            }, 19000);
+            </script>
+            <next-code-block></next-code-block>
+        </div>
+    </template>
+</custom-element-demo>
+```
+-->
+```html
+<resize-aware>
+    <div id="tester" style="background-color: azure; margin: 5px; padding: 5px;">
+    <p>
+        This azure area is resize-aware.
+    </p>
+    </div>
+</resize-aware>
+<div id="col2info" style=" margin: 5px; padding: 5px;"></div>
+</div>
+<ul id="chglist"></ul>
+```
 
 ## How to Use
 ```html
