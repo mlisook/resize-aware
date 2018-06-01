@@ -10,7 +10,7 @@
     "custom-element",
     "web-components"
   ],
-  "name": "@polymer/resize-aware",
+  "name": "dr-niels-resize-aware",
   "version": "3.0.0",
   "resolutions": {
     "inherits": "2.0.3",
