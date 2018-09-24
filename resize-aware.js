@@ -43,7 +43,6 @@ class ResizeAware extends PolymerElement {
 			#saw {
 				height: 100%;
 				width: 100%;
-				display: inline-block;
 				margin: 0px;
 				padding: 0px;
 				border: none;
