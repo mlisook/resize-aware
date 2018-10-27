@@ -13,6 +13,8 @@ something like the window resize event but for an individual element.
 There are many reasons an element's size could change - CSS or class changes, content changes, content of other elements affecting
 the flow, viewport changes, etc.  This element detects the size changes without polling or loops.
 
+This element works in Polymer 2 and Polymer 1 projects.  **For Polymer 3, see [plastic-resize-aware](https://github.com/mlisook/plastic-resize-aware).**
+
 This custom control uses code from [procurios/ResizeSensor](https://github.com/procurios/ResizeSensor) modified to work with Polymer in both Shadow and Shady DOM.
 
 ## Install
@@ -23,6 +25,10 @@ For Polymer 2.0 projects, install the 2.0 native, class based version:
 For Polymer 1.x projects, install the hybrid version:
 
 `bower install --save resize-aware#^1.9.1`
+
+For Polymer 3.0 projects, use [plastic-resize-aware](https://github.com/mlisook/plastic-resize-aware), and install via:
+
+`npm install --save plastic-resize-aware`
 
 ## How to Use
 ```html
