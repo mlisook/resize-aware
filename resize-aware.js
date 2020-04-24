@@ -79,7 +79,6 @@ class ResizeAware extends PolymerElement {
 			
 			.ResizeSensor__resizeTriggers>div {
 				background: #eee;
-				overflow: auto;
 			}
 			
 			.ResizeSensor__contractTrigger:before {
